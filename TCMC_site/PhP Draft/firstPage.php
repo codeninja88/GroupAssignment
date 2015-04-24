@@ -32,30 +32,29 @@ if ($_POST['submit'] === "Add New Artist") {
     <head lang="en">
         <meta charset="UTF-8">
         <title></title>
-        <script>
-            var imageArray = document.getElementsByClassName("thumbNailImage");
-            function imageCorrection() {
-                for (var i = 0; i < imageArray.length; i++) {
-                    imageArray[i].onerror = (function () {
-                        console.log("An error has been caught");
-                        imageArray[i].style.display = 'none';
 
-
-
-                    }());
-                }
-            }
-
-        </script>
     </head>
     <body>
+        <form method="post" action="secondPage.php">
+            <?php
+                $sql = "SELECT * FROM CATEGORY;";
+                foreach($dbh->query($sql) as $row) {
+                    echo "<input type='checkbox' name='$row[categoryName] . CheckBox' value='$row[categoryName]'>  $row[categoryName] <br />";
+                }
+
+
+            ?>
+
+            <input type="submit" title="SUBMIT">
+        </form>
+
     <?php
 
 
-    foreach ($dbh->query($sql) as $row) {
+/*    foreach ($dbh->query($sql) as $row) {
         echo $row['artistGroup'] . "</br>";
 
-    }
+    }*/
 
     if (!$_POST['moreInfoButton']) {
         displayArtists();

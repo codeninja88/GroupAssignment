@@ -1,0 +1,17 @@
+Ideas for PhP 
+
+- Error checking - Regex for fields (making sure someone has actually entered a valid email address or whatever)
+
+- Adding categories as well a presenting the user with a list of existing categories 
+
+- Username/password stuff
+
+- Password encryption
+
+- ERD sync
+
+- Category uniqueness - primary key working and not being overwritten
+
+- Change the colour of the X for deleting an artist
+
+- Sort by multiple categories

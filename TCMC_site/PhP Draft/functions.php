@@ -41,13 +41,16 @@ function addArtist()
 function displayArtists()
 {
     global $dbh;
-    $sql = "SELECT * FROM ARTIST";
+    $sql = "SELECT * FROM ARTIST,ARTIST_CATEGORY, CATEGORY
+WHERE ARTIST.artistID = ARTIST_CATEGORY.artistID AND
+ARTIST_CATEGORY.categoryName = CATEGORY.categoryName
+ORDER BY ARTIST.artistGroup";
     echo "<table style='border:solid; width: 50%; margin-right: 25%; margin-left:25%; border-collapse: collapse;'><tr><th style='font-size:30px'>Group Name</th><th style='font-size:30px'>Group Summary</th><th style='font-size:30px'>Image</th><th>Delete</th></th></tr>";
     if (!$_POST['edit']) {
         //Default display if 'edit' has not been submitted
         foreach ($dbh->query($sql) as $row) {
             if($row[artistImg]) $image = 'defaultThumbnail.png';
-            echo "<td><a name='$row[artistID]'></a> $row[artistGroup] <br><form action='firstPage.php' method='post'> <input type='submit' name='moreInfoButton' value='More Info' title='More info on this artist.'>
+            echo "<td><a name='$row[artistID]'></a> <strong>$row[artistGroup]</strong> <br><form action='firstPage.php' method='post'> <input type='submit' name='moreInfoButton' value='More Info' title='More info on this artist.'>
 <input type='hidden' name='moreInfo' value='$row[artistGroup]'></form></td>";
             echo "<td>$row[artistSummary]</td>";
             echo "<td> <img src='Images/musosThumbnail/$row[artistImg]' alt='$row[artistGroup] image' title='$row[artistGroup] image' class='thumbNailImage' /> </td>";
@@ -230,4 +233,14 @@ function uploadImage(){
 
     return $artistSummary;
 }*/
+
+
+function sortBy(){
+    // The user clicks on a link
+    // "Blues" "Jazz" Or something
+    // >>>>> Request with the category selected
+    // dynamic SQL executes and we display the result
+
+
+}
 ?>
