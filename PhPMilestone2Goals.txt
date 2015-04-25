@@ -3,8 +3,9 @@ Ideas for PhP
 - Error checking - Regex for fields (making sure someone has actually entered a valid email address or whatever)
 
 - Adding categories as well a presenting the user with a list of existing categories 
+	-The ability for users to update/change images
 
-- Username/password stuff
+- Username/password stuff, user accounts
 
 - Password encryption
 
@@ -12,6 +13,6 @@ Ideas for PhP
 
 - Category uniqueness - primary key working and not being overwritten
 
-- Change the colour of the X for deleting an artist
+- Change the colour of the X for deleting an artist - complete
 
-- Sort by multiple categories
+- Sort by multiple categories - complete

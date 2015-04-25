@@ -78,31 +78,34 @@ function displayArtists()
 
                 //Displayed if this is the "artist" being edited
 
-                echo "<tr style='background-color: orange'><td><strong>Editing:</strong></td><td><a name='$row[artistID]'></a></td><td></td><td></td></tr>";
+                echo "<tr style='background-color: orange'>
+                        <td><strong>Edit artist:</strong></td><td><a name='$row[artistID]'></a></td><td></td><td></td></tr>";
                 echo "<form action='index.php' method='post' id='editArtistForm'>";
                 echo "<tr border: solid; background-color: lightgreen'>";
                 echo "<td>Group name: <input type='text' name='artistGroup' value='$row[artistGroup]'></td>";
-                echo "<td style='width:50%; padding:5px'><strong>Artist Summary:<br /></strong></string><textarea value='$row[artistSummary]' form='editArtistForm' name='artistSummary' rows='6' cols='55' style='resize:none'>$row[artistSummary]</textarea>  ";
+                echo "<td style='width:50%; padding:5px'><strong>Artist Summary:<br /></strong></string>
+                      <textarea value='$row[artistSummary]' form='editArtistForm' name='artistSummary' rows='6' cols='55' style='resize:none'>$row[artistSummary]</textarea>  ";
                 echo "<strong>Artist Description:<br /></strong><textarea value='$row[artistDesc]' form='editArtistForm' name='artistDesc' rows='10' cols='55' style='resize:none'>$row[artistDesc]</textarea>
                         <br />Phone: <input type='tel' name='artistPhone' value='$row[artistPhone]'><br>Email: <input type='email' name='artistEmail' value='$row[artistEmail]'>
                         <br>Website: <input type='url' name='artistWeb' value='$row[artistWeb]'></td>";
                 echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /> </td>";
                 echo "";
-
                 echo "<td><input type='hidden' name='artistID' value='$row[artistID]'>
                 <input type='submit' name='editSubmissionButton' value='Confirm Changes'><input type='hidden' name='confirm' value='$row[artistGroup]'> </form>
                 <a href='index.php'><button>Discard Changes</button></a>
                 <form action='index.php' method='post'>
-                <input type='submit' name='XButton' value='X' title='Delete this entry.'><input type='hidden' name='delete' value='$row[artistGroup]'></form> </td>";
+                <input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red' title='Delete this artist'><input type='hidden' name='delete' value='$row[artistGroup]'></form> </td>";
                 echo "</tr>";
                 echo "<tr style='background-color: orange; height: 10px;'><td><strong></strong></td><td></td><td></td><td></td></tr>";
-            } else {
+
                 //Every other artists that is not being edited
+            } else {
+
                 echo "<td><a name='$row[artistID]'></a> $row[artistGroup]</td>";
                 echo "<td style='width:50%; padding:5px;border:thin'> $row[artistSummary] </td>";
                 echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /> </td>";
                 echo "<td><form action='index.php#$row[artistID]' method='post'><input type='submit' name='editSubmissionButton' value='Edit this artist'><input type='hidden' name='edit' value='$row[artistGroup]'> </form>
-<form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
+                        <form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
                 echo "</tr>";
             }
 
