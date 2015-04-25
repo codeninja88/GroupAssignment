@@ -56,7 +56,7 @@ function displayArtists()
             echo "<td>$row[artistSummary]</td>";
             echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image' class='thumbNailImage' /> </td>";
             echo "<td><form action='index.php#$row[artistID]' method='post'><input type='submit' name='editSubmissionButton' value='Edit this artist'><input type='hidden' name='edit' value='$row[artistGroup]'> </form>
-<form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
+<form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red; background-color: darksalmon'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
 
             echo "</tr>";
 
@@ -94,7 +94,7 @@ function displayArtists()
                 <input type='submit' name='editSubmissionButton' value='Confirm Changes'><input type='hidden' name='confirm' value='$row[artistGroup]'> </form>
                 <a href='index.php'><button>Discard Changes</button></a>
                 <form action='index.php' method='post'>
-                <input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red' title='Delete this artist'><input type='hidden' name='delete' value='$row[artistGroup]'></form> </td>";
+                <input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red; background-color: darksalmon' title='Delete this artist'><input type='hidden' name='delete' value='$row[artistGroup]'></form> </td>";
                 echo "</tr>";
                 echo "<tr style='background-color: orange; height: 10px;'><td><strong></strong></td><td></td><td></td><td></td></tr>";
 
@@ -105,7 +105,7 @@ function displayArtists()
                 echo "<td style='width:50%; padding:5px;border:thin'> $row[artistSummary] </td>";
                 echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /> </td>";
                 echo "<td><form action='index.php#$row[artistID]' method='post'><input type='submit' name='editSubmissionButton' value='Edit this artist'><input type='hidden' name='edit' value='$row[artistGroup]'> </form>
-                        <form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
+                        <form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red; background-color: darksalmon'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
                 echo "</tr>";
             }
 
