@@ -9,64 +9,108 @@ require("databaseConnect.php");
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Page 2 - Processing Page</title>
+    <title>Sort by Category</title>
 </head>
 
 <body>
-<h1>This is the processing page</h1>
-
 <?php
-global $dbh;
-//we've received a post request that has check boxes.
-//some are checked others not
-$counter = "FIRST";
-echo "Raw array length: " . count($_POST) . " <br />";
-$arrayLength = count($_POST)-1;
-echo $arrayLength . " our array length reduced by 1 <br />";
-echo "<pre>";
+//Generating the heading of the page: tells the user they're sorting by category
+// and the category/ies they have selected
+if (count($_POST) > 1) {
+    $categoryWord = "Sort by categories:";
+} else if (count($_POST === 0)){
+    $categoryWord = "Whoops! Nothing selected";
+}else{
+    $categoryWord = "Sort by category:";
+}
 
-print_r($_POST);
-echo "</pre>";
-$sql = "SELECT * FROM ARTIST, ARTIST_CATEGORY, CATEGORY
+//If the user has come directly to the page without selecting categories
+//This message is displayed.
+echo "<h1>$categoryWord</h1>";
+if (count($_POST) === 0) {
+    echo "<h2>None selected!</h2>";
+    echo "<a href='index.php'>Return Home</a>";
+} else {
+
+
+    global $dbh;
+//firstEntry is going to be used in a loop when displaying the relevant artists
+    $counter = 1;
+    $arrayLength = count($_POST) - 1;
+    foreach ($_POST as $i) {
+        if ($counter === 1) {
+            $counter++;
+        }
+        if ($arrayLength !== 0) {
+            echo "<h2 style='display: inline'>$i, </h2>";
+            $arrayLength--;
+        } else
+            echo "<h2 style='display: inline'>and $i. <br /></h2>";
+    }
+
+    echo "<a href='index.php'>Return Home</a>";
+    $arrayLength = count($_POST) - 1;
+    echo "<pre>";
+
+//Leaving this here in case we need to print out our input again.
+//print_r($_POST);
+    echo "</pre>";
+    $sql = "SELECT * FROM ARTIST, ARTIST_CATEGORY, CATEGORY
                     WHERE ARTIST.artistID = ARTIST_CATEGORY.artistID AND
                     ARTIST_CATEGORY.categoryName = CATEGORY.categoryName AND (";
 
-foreach ($_POST as $key => $value) {
+//Generates our SQL based on the POST request
+    foreach ($_POST as $key => $value) {
 
-    $sql = $sql . "CATEGORY.categoryName = " . "'" .  $value . "'";
-    if($arrayLength !== 0){
-        $sql = $sql . " OR ";
-        $arrayLength--;
+        $sql = $sql . "CATEGORY.categoryName = " . "'" . $value . "'";
+        if ($arrayLength !== 0) {
+            $sql = $sql . " OR ";
+            $arrayLength--;
+        }
+
+        /*
+            if ($counter === "FIRST") {
+                $sql = $sql . $value;
+                $counter = "NOT FIRST";
+            } else {
+                $sql = $sql . ', ' . $value ;
+            }
+
+            echo "<pre>";
+            print_r(explode(', ', $sql));
+            echo "</pre>";*/
     }
 
-/*
-    if ($counter === "FIRST") {
-        $sql = $sql . $value;
-        $counter = "NOT FIRST";
-    } else {
-        $sql = $sql . ', ' . $value ;
+//Final GROUP BY statement for the SQL
+    $sql = $sql . ") /*GROUP BY CATEGORY.categoryName*/ ORDER BY CATEGORY.categoryName, ARTIST.artistGroup;";
+
+    /*-------------------------------------PROCESSING THE SQL RESULT----------------------------------------------*/
+    $divState = "closed";
+    echo "<br />";
+    foreach ($dbh->query($sql) as $row) {
+        if ($category === "" || $row['categoryName'] !== $category) {
+            if ($divState === 'open') {
+                echo "</div>";
+                $divState = "closed";
+            }
+            echo "<h3>$row[categoryName]</h3>";
+
+            $category = $row['categoryName'];
+            if ($divState === "closed") {
+                echo "<div id='$row[categoryName]' style='border: solid; margin: 15px'>";
+                $divState = "open";
+            }
+
+
+        }
+        echo "$row[artistGroup]";
+
+        echo "<pre>";
+        print_r($row);
+        echo "</pre>";
+
     }
-
-    echo "<pre>";
-    print_r(explode(', ', $sql));
-    echo "</pre>";*/
 }
-
-$sql = $sql . ") GROUP BY ARTIST.artistID;";
-
-$fieldArray = explode(', ', $sql);
-echo "$sql";
-
-$rowCounter = 0;
-
-echo "<br />";
-foreach($dbh->query($sql) as $row){
-    echo "<pre>";
-    print_r($row);
-    echo "</pre>";
-
-}
-
 
 ?>
 </body>
