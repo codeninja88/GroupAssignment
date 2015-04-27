@@ -23,18 +23,14 @@ function addArtist()
     $artistPhone = $_POST['artistPhone'];
     $artistEmail = $_POST['artistEmail'];
     $artistWeb = $_POST['artistWeb'];
-    echo "Error code on Image upload: " . $_FILES['fileToUpload']['error'] . "<br />";
     if (isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] === 0) {
-        echo "An Image is uploading";
-        uploadImage();
+        uploadImage("fileToUpload");
         $artistImg = basename($_FILES['fileToUpload']['name']);
     } else {
-        echo "The file was apparently not set.";
         $artistImg = 'defaultImage.jpg';
     }
     $sql = "INSERT INTO ARTIST(artistGroup, artistSummary, artistDesc, artistWeb, artistEmail, artistPhone, artistImg) VALUES('$artistGroup', '$artistSummary', '$artistDesc', '$artistWeb', '$artistEmail', '$artistPhone', '$artistImg')";
     $dbh->exec($sql);
-    echo "<br /> <strong>Function has added an artist</strong>";
 
 }
 
@@ -69,15 +65,12 @@ function displayArtists()
                 $image = $row['artistImg'];
             }
             if ($_POST['edit'] == $row['artistGroup']) {
-                echo "<br/><pre>";
-                print_r($_POST);
-                echo "</pre><br/>";
 
                 //Displayed if this is the "artist" being edited
 
                 echo "<tr style='background-color: orange'>
                         <td><strong>Edit artist:</strong></td><td><a name='$row[artistID]'></a></td><td></td><td></td></tr>";
-                echo "<form action='index.php' method='post' id='editArtistForm'>";
+                echo "<form action='index.php' method='post' id='editArtistForm' enctype='multipart/form-data'>";
                 echo "<tr border: solid; background-color: lightgreen'>";
                 echo "<td>Group name: <input type='text' name='artistGroup' value='$row[artistGroup]'></td>";
                 echo "<td style='width:50%; padding:5px'><strong>Artist Summary:<br /></strong></string>
@@ -85,8 +78,11 @@ function displayArtists()
                 echo "<strong>Artist Description:<br /></strong><textarea value='$row[artistDesc]' form='editArtistForm' name='artistDesc' rows='10' cols='55' style='resize:none'>$row[artistDesc]</textarea>
                         <br />Phone: <input type='tel' name='artistPhone' value='$row[artistPhone]'><br>Email: <input type='email' name='artistEmail' value='$row[artistEmail]'>
                         <br>Website: <input type='url' name='artistWeb' value='$row[artistWeb]'></td>";
-                echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /><br /> <input type='file' value=''> </td>";
-                echo "<input type='file' placeholder='$row[artistImg]' value=''>";
+                echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /><br />   <input type='hidden' name='oldImage' value='$row[artistImg]'>
+                 <input type='hidden' name='MAX_FILE_SIZE' value='10500000'/>
+                 <input name='newImage' type='file' id='newImage'></td>";
+
+
                 echo "";
                 echo "<td><input type='hidden' name='artistID' value='$row[artistID]'>
                 <input type='submit' name='editSubmissionButton' value='Confirm Changes'><input type='hidden' name='confirm' value='$row[artistGroup]'> </form>
@@ -125,7 +121,6 @@ function displayArtistImages()
 function confirmUpdate()
 {
     global $dbh;
-    echo "Updated: " . $_POST['artistGroup'];
     $artistGroup = $_POST['artistGroup'];
     $artistSummary = $_POST['artistSummary'];
     $artistDesc = $_POST['artistDesc'];
@@ -133,13 +128,20 @@ function confirmUpdate()
     $artistEmail = $_POST['artistEmail'];
     $artistPhone = $_POST['artistPhone'];
     $artistWeb = $_POST['artistWeb'];
+    //Little confused about best case error checking? Do I stop files of the same name being uploaded?
+    // What if the band is re-branding and want to use/overwrite the same file name... etc.
+    if ($_FILES['newImage']['name'] !== "" && $_FILES['newImage']['error'] !== 4) {
+        uploadImage("newImage");
+        $artistImg = $_FILES['newImage']['name'];
+    } else {
+        echo "There was no new image submitted";
+        $artistImg = $_POST['oldImage'];
 
+    }
     $sql = "UPDATE ARTIST SET artistGroup = '$artistGroup', artistSummary = '$artistSummary', artistDesc = '$artistDesc', artistPhone = '$artistPhone', artistEmail = '$artistEmail',
-            artistWeb = '$artistWeb' WHERE artistID = $artistID";
+            artistWeb = '$artistWeb', artistImg = '$artistImg' WHERE artistID = $artistID";
     $dbh->exec($sql);
-    echo "SQL: " . $sql;
 
-    echo "Data confirmed:<br />Group name: $artistGroup <br /> Summary: $artistSummary";
 }
 
 function displayIndividualArtistInfo()
@@ -182,39 +184,33 @@ function displayIndividualArtistInfo()
     echo "</div>";
 }
 
-function uploadImage()
+function uploadImage($fileObject)
 {
-    if (!preg_match('/(\w)*\.(jpg|png|gif|jpeg)$/', $_FILES['fileToUpload']['name'])) {
+    if (!preg_match('/(\w)*\.(jpg|png|gif|jpeg)$/', $_FILES[$fileObject]['name'])) {
         echo("<br /><strong>Error: Invalid file type please select a .png, .jpg or .gif</strong><br />");
         return;
     }
-    if ($_FILES['fileToUpload']['error'] !== 0) {
+    if ($_FILES[$fileObject]['error'] !== 0) {
         echo "ERROR.";
         return;
     }
     //Temporary name on the server
-    $tempFile = $_FILES['fileToUpload']['tmp_name'];
+    $tempFile = $_FILES[$fileObject]['tmp_name'];
     //This is where we rename the file. basename is going to help with security
-    $targetFile = basename($_FILES['fileToUpload']['name']);
+    $targetFile = basename($_FILES[$fileObject]['name']);
     $uploadDirectory = "Images";
     $uploadSubdirectory = "musos";
     //This only moves files that have been uploaded. It knows they have been uploaded because
     // they are in the temp file. This will return false if this fails
-    if (move_uploaded_file($tempFile, $uploadDirectory . "/" . "/" . $uploadSubdirectory . "/" . $targetFile)) {
-        echo "the file has been moves successfully to: " . $uploadDirectory . "/" . $targetFile;
+    if (move_uploaded_file($tempFile, $uploadDirectory . "/" . $uploadSubdirectory . "/" . $targetFile)) {
+        //The file was moved successfully
     } else {
         echo "There was a problem moving the file.";
         $error = $_FILES['fileToUpload']['error'];
         echo "<pre>$error</pre>";
     }
 
-    echo "<p> Image array: </p>";
-    echo "<pre>";
-    print_r($_FILES['fileToUpload']);
-    echo "</pre>";
-    echo "<p> Before call to createThumb </p>";
     createThumbnail($targetFile);
-    echo "<strong>File uploaded successfully.</strong> <br />";
 }
 
 /*function generateArtistSummary($description){
@@ -260,23 +256,20 @@ function createThumbnail($imageName)
 {
     //This is called after the image has been uploaded and saved and will create the thumbnail based on the most
     //recently uploaded image.
-    echo "Create thumbnail $imageName passed <br />";
-
     /*
      * IMAGE CODES WE ACCEPT
      *  1.  .gif
      *  2.  .jpg
      *  3.  .png
-     *
-     * For now transparency is not preserved
+     * For now transparency is not preserved, not sure if this is necessary as we will
+     * be mostly accepting photos I assume, though if someone wants to use a logo
+     * design it could realistically be a png with some transparency
     */
 
     $pathToImages = "Images/musos/";
     $pathToThumbnails = "Images/musosThumbnail/";
     // This is a number.
     $imageType = exif_imagetype($pathToImages . $imageName);
-
-    echo "<br>$imageType<br>";
 
     $directory = opendir($pathToImages);
 
@@ -292,8 +285,6 @@ function createThumbnail($imageName)
         return;
     }
 
-    echo "The file type: " . $imageType;
-
     $width = imagesx($image);
     $height = imagesy($image);
 
@@ -306,27 +297,21 @@ function createThumbnail($imageName)
 
     imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}");
     //imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}");
-    echo "<br />This is before the conversion and storage of the new THUMB<br />";
     if ($imageType === 1) {
         imagegif($newTempImage, "{$pathToThumbnails}{$imageName}");
-        echo"<p>A gif thumbnail has been created for the image</p>";
     } elseif ($imageType === 2) {
-        if(imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}")){
-            echo"A jpg thumbnail has been created for the image";
-        }else {
-            echo"<strong>Conversion to the new file failed</strong>";
+        if (imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}")) {
+        } else {
+            echo "<strong>Creation of thumbnail has failed</strong>";
         }
     } elseif ($imageType === 3) {
         imagepng($newTempImage, "{$pathToThumbnails}{$imageName}");
-        echo"<p>A new png thumbnail has been created</p>";
     } else {
         echo "<br><strong>Something has gone horribly wrong.</strong><br>";
     }
 
-    echo "<br />THIS IS AFTER THE CONVERSION AND STORAGE OF THE NEW THUMB<br />";
 
     closedir($directory);
-    echo "Thumbnail created successfully";
 }
 
 
