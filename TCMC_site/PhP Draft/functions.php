@@ -59,10 +59,7 @@ function displayArtists()
 <form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red; background-color: darksalmon'><input type='hidden' name='delete' value='$row[artistGroup]'> </form></td>";
 
             echo "</tr>";
-
         }
-
-
         echo "</table>";
     } elseif ($_POST['edit']) {
         foreach ($dbh->query($sql) as $row) {
@@ -88,7 +85,8 @@ function displayArtists()
                 echo "<strong>Artist Description:<br /></strong><textarea value='$row[artistDesc]' form='editArtistForm' name='artistDesc' rows='10' cols='55' style='resize:none'>$row[artistDesc]</textarea>
                         <br />Phone: <input type='tel' name='artistPhone' value='$row[artistPhone]'><br>Email: <input type='email' name='artistEmail' value='$row[artistEmail]'>
                         <br>Website: <input type='url' name='artistWeb' value='$row[artistWeb]'></td>";
-                echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /> </td>";
+                echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /><br /> <input type='file' value=''> </td>";
+                echo "<input type='file' placeholder='$row[artistImg]' value=''>";
                 echo "";
                 echo "<td><input type='hidden' name='artistID' value='$row[artistID]'>
                 <input type='submit' name='editSubmissionButton' value='Confirm Changes'><input type='hidden' name='confirm' value='$row[artistGroup]'> </form>
@@ -127,7 +125,7 @@ function displayArtistImages()
 function confirmUpdate()
 {
     global $dbh;
-    echo "" . $_POST['artistGroup'];
+    echo "Updated: " . $_POST['artistGroup'];
     $artistGroup = $_POST['artistGroup'];
     $artistSummary = $_POST['artistSummary'];
     $artistDesc = $_POST['artistDesc'];
@@ -135,6 +133,7 @@ function confirmUpdate()
     $artistEmail = $_POST['artistEmail'];
     $artistPhone = $_POST['artistPhone'];
     $artistWeb = $_POST['artistWeb'];
+
     $sql = "UPDATE ARTIST SET artistGroup = '$artistGroup', artistSummary = '$artistSummary', artistDesc = '$artistDesc', artistPhone = '$artistPhone', artistEmail = '$artistEmail',
             artistWeb = '$artistWeb' WHERE artistID = $artistID";
     $dbh->exec($sql);
@@ -143,9 +142,6 @@ function confirmUpdate()
     echo "Data confirmed:<br />Group name: $artistGroup <br /> Summary: $artistSummary";
 }
 
-/**
- *
- */
 function displayIndividualArtistInfo()
 {
     /*The 'moreInfo' is a hidden submission that comes with the form containing the "More Info" button*/
@@ -188,7 +184,7 @@ function displayIndividualArtistInfo()
 
 function uploadImage()
 {
-    if (!preg_match('/(\w)*\.(jpg|png|gif)$/', $_FILES['fileToUpload']['name'])) {
+    if (!preg_match('/(\w)*\.(jpg|png|gif|jpeg)$/', $_FILES['fileToUpload']['name'])) {
         echo("<br /><strong>Error: Invalid file type please select a .png, .jpg or .gif</strong><br />");
         return;
     }
@@ -212,13 +208,11 @@ function uploadImage()
         echo "<pre>$error</pre>";
     }
 
-
-    //uploadTrial();
-    echo "<br / Image array: <br />";
+    echo "<p> Image array: </p>";
     echo "<pre>";
     print_r($_FILES['fileToUpload']);
     echo "</pre>";
-    echo "<br />";
+    echo "<p> Before call to createThumb </p>";
     createThumbnail($targetFile);
     echo "<strong>File uploaded successfully.</strong> <br />";
 }
@@ -277,7 +271,6 @@ function createThumbnail($imageName)
      * For now transparency is not preserved
     */
 
-
     $pathToImages = "Images/musos/";
     $pathToThumbnails = "Images/musosThumbnail/";
     // This is a number.
@@ -313,17 +306,24 @@ function createThumbnail($imageName)
 
     imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}");
     //imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}");
-
+    echo "<br />This is before the conversion and storage of the new THUMB<br />";
     if ($imageType === 1) {
         imagegif($newTempImage, "{$pathToThumbnails}{$imageName}");
+        echo"<p>A gif thumbnail has been created for the image</p>";
     } elseif ($imageType === 2) {
-        imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}");
+        if(imagejpeg($newTempImage, "{$pathToThumbnails}{$imageName}")){
+            echo"A jpg thumbnail has been created for the image";
+        }else {
+            echo"<strong>Conversion to the new file failed</strong>";
+        }
     } elseif ($imageType === 3) {
-
         imagepng($newTempImage, "{$pathToThumbnails}{$imageName}");
+        echo"<p>A new png thumbnail has been created</p>";
     } else {
         echo "<br><strong>Something has gone horribly wrong.</strong><br>";
     }
+
+    echo "<br />THIS IS AFTER THE CONVERSION AND STORAGE OF THE NEW THUMB<br />";
 
     closedir($directory);
     echo "Thumbnail created successfully";
