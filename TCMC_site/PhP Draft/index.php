@@ -4,13 +4,19 @@ include_once('functions.php');
 /*This gives us our database object*/
 
 if ($_POST['submit'] === "Add New Artist") {
-    echo "Submitted: <br />";
-    echo "<br> Image added" . $_POST['fileToUpload'] . "<<<< FILE <br />";
+    if (isset($_FILES['fileToUpload']['name'])) {
+        echo "<br /><strong>A file has been sent</strong> <br />";
+        $imageFiles = scandir('Images/musos/');
+        //List of files in the image file.
+        //Check that the file name doesnt exist in the file an if it does do I modify the name or requect the file.
+        echo "<pre>";
+        print_r($imageFiles);
+        echo "</pre>";
+
+    }
     addArtist();
-    echo "<br>Adding attempted.";
 } elseif ($_POST['delete']) {
     $sentVariable = $_POST['delete'];
-    echo "Delete selected: $sentVariable sent";
     deleteArtist($_POST['delete']);
 } elseif ($_POST['edit']) {
     echo "Edit was selected for: " . $_POST['edit'];
@@ -112,10 +118,6 @@ if ($_POST['submit'] === "Add New Artist") {
     </div>
 
     <!-- ________________________________________________________________________________________________________________ -->
-
-
-
-
     <?php
 
 
@@ -127,14 +129,7 @@ if ($_POST['submit'] === "Add New Artist") {
     if (!$_POST['moreInfoButton']) {
         displayArtists();
     }
-
-
-    echo "Following the calling of display artist";
-
     ?>
-
-
-
 
     <hr>
     <br/>
