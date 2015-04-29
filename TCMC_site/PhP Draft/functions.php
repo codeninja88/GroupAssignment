@@ -35,45 +35,21 @@ function addArtist()
     $dbh->exec($sql);
 
     foreach ($dbh->query("SELECT * FROM ARTIST WHERE artistGroup = '$artistGroup' AND artistSummary = '$artistSummary' AND artistDesc = '$artistDesc' AND artistWeb = '$artistWeb' AND artistEmail = '$artistEmail' AND artistPhone = '$artistPhone' AND artistImg = '$artistImg'") as $row) {
-        echo "<pre>";
-        print_r($row);
-        echo "</pre>";
-        echo "<br />";
         $iterationCounter = 1;
         for ($i = 1; $i <= 5; $i++) {
             echo "$iterationCounter";
             $iterationCounter++;
-            echo "For loop";
-            $categoryString = "cat".$i;
+            $categoryString = "cat" . $i;
             if ($_POST[$categoryString] !== "") {
-                echo "<br />";
-                echo "The cat string is not empty.";
-                echo "<br />";
                 addCategory($_POST[$categoryString]);
                 $categoryName = $_POST[$categoryString];
-                echo "Setting category name: cat $categoryName";
                 $capitalisedString = ucwords($_POST[$categoryString]);
                 $sql = "INSERT INTO ARTIST_CATEGORY(artistID, categoryName) VALUES($row[artistID], '$capitalisedString')";
-                echo "$sql";
                 $dbh->exec($sql);
-
                 $sql = "";
-                //displaying everything that will be producted during this for loop
-                echo "<pre>";
-                print_r($_POST);
-                echo "</pre>";
-                echo "<br />";
-                echo "$sql";
-                echo "<br />";
-
             }
-
         }
     }
-
-
-
-
 }
 
 function displayArtists()
@@ -109,7 +85,6 @@ function displayArtists()
                 $image = $row['artistImg'];
             }
             if ($_POST['edit'] == $row['artistID']) {
-                echo "<p>A match was found.</p>";
                 //Displayed if this is the "artist" being edited
 
                 echo "<tr style='background-color: orange'>
@@ -120,14 +95,12 @@ function displayArtists()
                 echo "<td style='width:50%; padding:5px'><strong>Artist Summary:<br /></strong></string>
                       <textarea value='$row[artistSummary]' form='editArtistForm' name='artistSummary' rows='6' cols='55' style='resize:none'>$row[artistSummary]</textarea>  ";
                 echo "<strong>Artist Description:<br /></strong><textarea value='$row[artistDesc]' form='editArtistForm' name='artistDesc' rows='10' cols='55' style='resize:none'>$row[artistDesc]</textarea>
-                        <br />Phone: <input type='tel' name='artistPhone' value='$row[artistPhone]'><br>Email: <input type='email' name='artistEmail' value='$row[artistEmail]'>
-                        <br>Website: <input type='url' name='artistWeb' value='$row[artistWeb]'></td>";
+                        <br />Phone: <input type='text' name='artistPhone' value='$row[artistPhone]'><br>Email: <input type='text' name='artistEmail' value='$row[artistEmail]'>
+                        <br>Website: <input type='text' name='artistWeb' value='$row[artistWeb]'></td>";
                 echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /><br />   <input type='hidden' name='oldImage' value='$row[artistImg]'>
                  <input type='hidden' name='MAX_FILE_SIZE' value='10500000'/>
                  <input name='newImage' type='file' id='newImage'></td>";
 
-
-                echo "";
                 echo "<td><input type='hidden' name='artistID' value='$row[artistID]'>
                 <input type='submit' name='editSubmissionButton' value='Confirm Changes'><input type='hidden' name='confirm' value='$row[artistGroup]'> </form>
                 <a href='index.php'><button>Discard Changes</button></a>
@@ -138,15 +111,14 @@ function displayArtists()
 
                 //Every other artists that is not being edited
             } else {
-
-                echo "<td><a name='$row[artistID]'></a><strong> $row[artistGroup]</strong></td>";
+                echo "<td><a name='$row[artistID]'></a> <strong>$row[artistGroup]</strong> <br><form action='index.php' method='post' enctype='multipart/form-data'> <input type='submit' name='moreInfoButton' value='More Info' title='More info on this artist.'>
+<input type='hidden' name='moreInfo' value='$row[artistID]'></form></td>";
                 echo "<td style='width:50%; padding:5px;border:thin'> $row[artistSummary] </td>";
-                echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' /> </td>";
+                echo "<td> <img src='Images/musosThumbnail/$image' alt='$row[artistGroup] image' title='$row[artistGroup] image'' />  </td>";
                 echo "<td><form action='index.php#$row[artistID]' method='post'><input type='submit' name='editSubmissionButton' value='Edit this artist'><input type='hidden' name='edit' value='$row[artistID]'> </form>
                         <form action='index.php' method='post'><input type='submit' name='XButton' value='X' title='Delete this entry.' style='color: red; background-color: darksalmon'><input type='hidden' name='delete' value='$row[artistID]'> </form></td>";
                 echo "</tr>";
             }
-
         }
     }
 }
@@ -178,9 +150,7 @@ function confirmUpdate()
         uploadImage("newImage");
         $artistImg = htmlspecialchars($_FILES['newImage']['name'], ENT_QUOTES, ENT_NOQUOTES);
     } else {
-        echo "There was no new image submitted";
         $artistImg = $_POST['oldImage'];
-
     }
     $sql = "UPDATE ARTIST SET artistGroup = '$artistGroup', artistSummary = '$artistSummary', artistDesc = '$artistDesc', artistPhone = '$artistPhone', artistEmail = '$artistEmail',
             artistWeb = '$artistWeb', artistImg = '$artistImg' WHERE artistID = $artistID";
@@ -192,8 +162,6 @@ function displayIndividualArtistInfo()
 {
     /*The 'moreInfo' is a hidden submission that comes with the form containing the "More Info" button*/
     $artistID = $_POST['moreInfo'];
-    echo "The object $artistID has been accessed <br />";
-    echo "contents: " . " <br />";
     global $dbh;
     $sql = "SELECT * FROM ARTIST WHERE '$artistID' = artistID";
     foreach ($dbh->query($sql) as $row) {
@@ -213,18 +181,16 @@ function displayIndividualArtistInfo()
     } else {
         $artistPath = 'Images/musos/' . $artistImg;
     }
-
-    echo "<div style='border:solid; width: 70%; margin-right: 25%; margin-left:25%; border-collapse: collapse; padding:25px'>";
+    echo "<div style='border:solid; width: 50%; margin:0 auto; padding:25px; border-radius: 20px; '>";
     echo "<h1>$artistGroup</h1>";
-    echo "<img src='$artistPath' title='A picture of $artistGroup' />
+    echo "<img src='$artistPath' title='A picture of $artistGroup' style='display: block; margin: 0 auto' />
+<hr>
         <h2>About the band:</h2><p>$artistDesc</p>";
     echo "<p>Phone: $artistPhone</p><p>Email: $artistEmail</p> <p>Website: $artistWeb</p>";
 
     echo "<form action='index.php' method='post'>
         <input type='submit' name='individualArtistBackButton' value='Back to all artists'>
         </form>";
-
-
     echo "</div>";
 }
 
@@ -332,7 +298,6 @@ function createThumbnail($imageName)
     } else {
         echo "<br><strong>Something has gone horribly wrong.</strong><br>";
     }
-
 
     closedir($directory);
 }

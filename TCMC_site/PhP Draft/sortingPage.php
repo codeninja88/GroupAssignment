@@ -29,7 +29,6 @@ if (count($_POST) > 1) {
 echo "<h1>$categoryWord</h1>";
 if (count($_POST) === 0) {
     echo "<h2>None selected!</h2>";
-    echo "<a href='index.php'>Return Home</a>";
 } else {
 
 
@@ -40,7 +39,6 @@ if (count($_POST) === 0) {
     foreach ($_POST as $i) {
         if ($arrayLength === 1 && $counter === 1) {
             echo "<h2>$i.</h2>";
-            $arrayLength--;
             $counter++;
             break;
         } elseif ($arrayLength > 1) {
@@ -54,11 +52,8 @@ if (count($_POST) === 0) {
 }
 echo "<a href='index.php'>Return Home</a>";
 $arrayLength = count($_POST) - 1;
-echo "<pre>";
 
-//Leaving this here in case we need to print out our input again.
-//print_r($_POST);
-echo "</pre>";
+
 $sql = "SELECT * FROM ARTIST, ARTIST_CATEGORY, CATEGORY
                     WHERE ARTIST.artistID = ARTIST_CATEGORY.artistID AND
                     ARTIST_CATEGORY.categoryName = CATEGORY.categoryName AND (";
@@ -72,17 +67,6 @@ foreach ($_POST as $key => $value) {
         $arrayLength--;
     }
 }
-    /*
-        if ($counter === "FIRST") {
-            $sql = $sql . $value;
-            $counter = "NOT FIRST";
-        } else {
-            $sql = $sql . ', ' . $value ;
-        }
-
-        echo "<pre>";
-        print_r(explode(', ', $sql));
-        echo "</pre>";*/
 
 
 //Final GROUP BY statement for the SQL
@@ -97,18 +81,15 @@ foreach ($dbh->query($sql) as $row) {
             echo "</div>";
             $divState = "closed";
         }
-        echo "<h3>$row[categoryName]</h3>";
-
+        echo "<h3 style='margin-left: 27%; '>$row[categoryName]</h3>";
         $category = $row['categoryName'];
         if ($divState === "closed") {
-            echo "<div id='$row[categoryName]' style='border: solid; margin: 15px'>";
+            echo "<div id='$row[categoryName]' style='border: solid; margin: 0 auto; max-width: 50%'>";
             $divState = "open";
         }
-
-
     }
     echo "<form action='index.php' method='post' id='$row[artistGroup]Form'>
-                <input type='submit' value='More Info'> <input type='hidden' name='moreInfo' value='$row[artistID]'>$row[artistGroup] </form><br />
+                <input type='submit' value='More Info' style='margin: 10px'> <input type='hidden' name='moreInfo' value='$row[artistID]'>$row[artistGroup] </form><br />
                 </form>";
 
 }

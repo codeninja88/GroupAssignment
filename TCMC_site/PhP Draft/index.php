@@ -17,7 +17,7 @@ if ($_POST['submit'] === "Add New Artist") {
 } elseif ($_POST['delete']) {
     deleteArtist($_POST['delete']);
 } elseif ($_POST['edit']) {
-    echo "Editing Artist: " . $_POST['edit'];
+    //echo "Editing Artist: " . $_POST['edit'];
 } elseif ($_POST['confirm']) {
     confirmUpdate();
 } else if ($_POST['moreInfo']) {
