@@ -13,6 +13,7 @@ require("databaseConnect.php");
 </head>
 
 <body>
+<h1>Group 7 - Milestone 1, CP2010 (tcmc07)</h1>
 <?php
 //Generating the heading of the page: tells the user they're sorting by category
 // and the category/ies they have selected

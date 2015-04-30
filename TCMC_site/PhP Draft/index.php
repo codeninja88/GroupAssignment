@@ -33,7 +33,8 @@ if ($_POST['submit'] === "Add New Artist") {
     <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>Group 7 || Index</title>
+        <title>Group 7 CP2010 Milestone 1</title>
+
 
         <style>
             .submitButton {
@@ -54,6 +55,7 @@ if ($_POST['submit'] === "Add New Artist") {
         </style>
     </head>
     <body>
+    <h1>Group 7 - Milestone 1, CP2010 (tcmc07)</h1>
     <div
         style="float: left; padding: 20px 20px 10px 20px; border-radius: 20px; background-color: #ffb679; border: outset">
         <form action="index.php" enctype="multipart/form-data" method="post"
