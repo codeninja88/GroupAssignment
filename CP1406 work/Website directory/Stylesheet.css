@@ -6,7 +6,6 @@
 #navbar ul {
 	margin-top: -10px;
 	float: left;
-	width: 100%px;
 	font-family: Arial;
 	font-weight: normal;
 	margin-left: -45px;
@@ -82,4 +81,15 @@ form {
 	position: absolute;
 	top: 35px;
 	left: 190px;
+}
+form1 {
+	background-color: #FFF;
+	font-family: Arial;
+	text-align: left;
+	font-style: normal;
+	margin-right: 320px;
+	margin-top: -50px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 40px;
 }
