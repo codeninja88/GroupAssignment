@@ -1,0 +1,85 @@
+﻿body {
+	margin-right: 180px;
+	margin-left: 180px;
+	background: #5E5E5E
+}
+#navbar ul {
+	margin-top: -10px;
+	float: left;
+	width: 100%px;
+	font-family: Arial;
+	font-weight: normal;
+	margin-left: -45px;
+}
+#navbar li {
+	list-style: none;
+	display: inline;
+}
+#navbar ul li a {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 140px;
+	text-decoration: none;
+	font-size: 14px;
+	float: left;
+	margin-left: 5px;
+	color: #FFF;
+	background-color: #009CFF;
+}
+#navbar li a:hover {
+    	background-color: #4DB8FF;
+    	color: #FFF;
+}
+#navbar ul li a:active {
+	color: #000000;
+	background-color: #FFF;
+}
+.Content {
+	background-color: #FFF;
+	font-family: Arial;
+	text-align: left;
+	font-style: normal;
+	margin-right: 320px;
+	padding-top: 40px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 40px;
+}
+h1 {
+	background-color: #ACACAC;
+	font-family: Arial;
+	text-align: left;
+	padding: 40px 10px 40px 120px;
+	font-weight: lighter;
+	color: #FFF
+}
+h2 {
+	text-align: center;
+}
+#notices {
+	margin-top: 0px;
+	float: right;
+	background-color: #FFF;
+	width: 234px;
+	font-family: Arial;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+form {
+	top: 40px;
+	right: 200px;
+	position: absolute;
+	font-size: small;
+	float: right;
+	text-align: right;
+	color: #FFF;
+	font-family: Arial;
+}
+#Logo {
+	position: absolute;
+	top: 35px;
+	left: 190px;
+}
