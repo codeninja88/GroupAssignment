@@ -1,4 +1,4 @@
-﻿body {
+body {
 	margin-right: 180px;
 	margin-left: 180px;
 	background: #5E5E5E
@@ -104,4 +104,23 @@ form2 {
 	padding-left: 30px;
 	padding-right: 30px;
 	padding-bottom: 40px;
+}
+
+#Logo {
+	position: absolute;
+	top: 35px;
+	left: 190px;
+}
+#noticeTxt {
+    font-size: 19px
+}
+#noticeHead {
+    font-size: 22px;
+    font-style: oblique
+}
+#sub {
+    font-size: 20px
+}
+#ital {
+    font-style: italic
 }
