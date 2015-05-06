@@ -124,3 +124,24 @@ form2 {
 #ital {
     font-style: italic
 }
+#signUp a {  
+    text-decoration: none;
+    padding-top: 10px;
+	padding-bottom: 10px;
+    position: relative;
+    text-align: center;
+    border-radius: 0px;
+    background-color: #6600FF;
+    color: #FFF;
+    width: 295px;
+    float: right;
+    font-family: Arial;
+    height: 20px
+}
+#signUp a:hover {
+    background-color: #9966FF;
+}
+#signUp a:active {
+    background-color: #FFF;
+    color: #000000;
+}
