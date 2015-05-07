@@ -145,3 +145,6 @@ form2 {
     background-color: #FFF;
     color: #000000;
 }
+table, td, th {
+    border: 1px solid  #009CFF;
+}
