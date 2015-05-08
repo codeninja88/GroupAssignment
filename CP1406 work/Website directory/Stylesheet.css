@@ -148,3 +148,26 @@ form2 {
 table, td, th {
     border: 1px solid  #009CFF;
 }
+#submit {
+    text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 140px;
+	text-decoration: none;
+	font-size: 20px;
+	color: white;
+    padding: 8px;
+	margin-left: 122px;
+    background-color: cadetblue;
+    border-radius: 4px
+}
+.imgBorder { border-style: ridge;
+    border-color:powderblue;
+    border-width: thick;
+    border-top-width: thick
+}
+#sponsor {
+    width: 200px;
+    position: inherit;
+    margin-left: 60px;
+    
