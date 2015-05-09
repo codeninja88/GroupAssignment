@@ -7,6 +7,11 @@ function redirectTo($pageAddress)
     exit;
 }
 
+function redirectBackToPreviousPage(){
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit;
+}
+
 function deleteArtist($artistID)
 {
     global $dbh;
