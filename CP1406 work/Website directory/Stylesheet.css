@@ -1,6 +1,7 @@
 body {
-	margin-right: 180px;
-	margin-left: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1140px;
 	background: #5E5E5E
 }
 #navbar ul {
@@ -35,6 +36,7 @@ body {
 	background-color: #FFF;
 }
 .Content {
+    width: 760px;
 	background-color: #FFF;
 	font-family: Arial;
 	text-align: left;
@@ -57,31 +59,41 @@ h2 {
 	text-align: center;
 	font-weight: lighter;
 }
+#featured {
+    font-family: Arial;
+    text-align: center;
+    background-color: #009CFF;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 17px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 #notices {
-	margin-top: 0px;
-	float: right;
 	background-color: #FFF;
-	width: 234px;
 	font-family: Arial;
 	padding-left: 30px;
 	padding-right: 30px;
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
-form {
-	top: 40px;
-	right: 200px;
-	position: absolute;
+#loginform {
+    background-color: #FFF;
+	margin-top: 0px;
 	font-size: small;
-	float: right;
 	text-align: right;
-	color: #FFF;
+	color: black;
 	font-family: Arial;
+    padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 #Logo {
-	position: absolute;
-	top: 35px;
-	left: 190px;
+	position: relative;
+	top: -130px;
+	left: 10px;
+    z-index: 2;
 }
 form1 {
 	background-color: #FFF;
@@ -105,33 +117,16 @@ form2 {
 	padding-right: 30px;
 	padding-bottom: 40px;
 }
-
-#Logo {
-	position: absolute;
-	top: 35px;
-	left: 190px;
-}
-#noticeTxt {
-    font-size: 19px
-}
-#noticeHead {
-    font-size: 22px;
-    font-style: oblique
-}
-#sub {
-    font-size: 20px
-}
-#ital {
-    font-style: italic
-}
 #signUp a {  
     text-decoration: none;
     padding-top: 10px;
 	padding-bottom: 10px;
     position: relative;
     text-align: center;
-    border-radius: 0px;
-    background-color: #6600FF;
+    font-size: 20px;
+    font-weight: Bold;
+    border-radius: 20px;
+    background-color: #FF5050;
     color: #FFF;
     width: 295px;
     float: right;
@@ -139,29 +134,57 @@ form2 {
     height: 20px
 }
 #signUp a:hover {
-    background-color: #9966FF;
+    background-color: #FF7373;
 }
 #signUp a:active {
     background-color: #FFF;
     color: #000000;
 }
-table, td, th {
-    border: 1px solid  #009CFF;
+.rightColumn {
+    width: 295px;
+    float: right;
+}
+#currentMembers {
+    margin-top: 65px;
+    font-family: Arial;
+    text-align: center;
+    background-color: #009CFF;
+    color: #FFF;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#notice {
+    margin-top: 25px;
+    font-family: Arial;
+    text-align: center;
+    background-color: #009CFF;
+    color: #FFF;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.belowHeader {
+    margin-top: -70px;
 }
 #submit {
     text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 140px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+    padding-right: 10px;
 	text-decoration: none;
 	font-size: 20px;
-	color: white;
-    padding: 8px;
-	margin-left: 122px;
+	color: #FFF;
     background-color: cadetblue;
     border-radius: 4px
 }
-.imgBorder { border-style: ridge;
+.noticeDates {
+    font-size: 14px;
+    color: #666666;
+}
+.imgBorder {
+    border-style: ridge;
     border-color:powderblue;
     border-width: thick;
     border-top-width: thick
@@ -170,4 +193,7 @@ table, td, th {
     width: 200px;
     position: inherit;
     margin-left: 60px;
-    
+}
+#homeLink {
+    text-decoration: none;
+}
