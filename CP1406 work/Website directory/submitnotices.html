@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Townsville Music</title>
+<link rel="stylesheet" href="Stylesheet.css" type="text/css">
+</head>
+<body>
+    <a id="homeLink" href="index.html">
+        <div class="head">
+            <h1>Townsville Community Music Centre</h1>
+            <div id="Logo"> 
+                <img src="images/TCMC.gif" alt="Logo">
+            </div>
+        </div>
+    </a>
+    <div class="belowHeader"> 
+        <div class="rightColumn">
+            <div id="signUp">
+                <a style="display:block" href="members.html">   
+                    Sign-Up
+                </a>
+            </div>
+            <div id="currentMembers">
+                Current Members
+            </div>
+            <form id="loginform">
+                <label class="username" for="username">User Name:</label>
+                <input type="text" name="username" id="username" size="19" placeholder="Email" /><br>
+                <br>
+                <label class="password" for="password">Password:</label>
+                <input type="password" name="password" size="19" /><br>
+                <br>
+                <input type="submit" value="Login">
+            </form>
+            <div id="notice">
+                Recent Notices
+            </div>
+            <div id="notices">
+                <a id="submit" href="submitnotices.html">Add Notice</a><br>
+                <p>
+                    <div class="noticeDates">
+                        <p>
+                            Posted 24-Mar-15
+                        </p>
+                    </div>
+                <strong>Volunteer Singers / Musicians<br></strong>
+                <br>
+                Our Parish Priest, Fr Mick Peters, is trying to development and foster a community for our 6 PM Vigil Mass at St Josephs on the Strand.<br> 
+                <a href="notices.html">Read more...</a><br>
+                </p>
+                <p>
+                    <div class="noticeDates">
+                        <p>
+                            Posted 21-March-15
+                        </p>
+                    </div>
+                <strong>CALL OUT FOR MUSOS</strong><br> 
+                <br>
+                Calling all Musos, entertainers, performers. We are looking to book performers/musicians/entertainers for a family friendly festival at the       Ingham Tyto Wetlands on the 23rd of May.<br>
+                <a href="notices.html">Read more...</a><br>
+                </p>
+                <p>
+                    <div class="noticeDates">
+                        <p>
+                            Posted 17-Mar-15
+                        </p>
+                    </div>
+                <strong>Chord Organ Rouvas Academy of Singing</strong><br> 
+                <br>
+                I have been in the music industry in Sydney for over 30 years in the capacity of singing teacher, stage performer, singer and musician.<br> 
+                <a href="notices.html">Read more...</a>
+                </p>
+            </div>
+        </div>
+        <div id="navbar">
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="artists.html">Artists</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        </ul>
+        </div>
+        <div class="Content">
+            <h2>Notice Submission</h2>
+            <form id="noticeForm" action="action_page.php">
+            <br>
+            Topic:<br>
+            <input type="text" name="Topic" size="40" maxlength="45" ><br>
+            <br>
+            Details:<br>
+            <textarea rows=5 cols=50 maxlength="500">
+Enter text here.
+            </textarea><br>
+            <br>
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>    
+</body>
+</html>
