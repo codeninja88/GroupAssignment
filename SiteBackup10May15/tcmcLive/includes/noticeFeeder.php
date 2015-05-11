@@ -1,0 +1,48 @@
+<?php
+
+    echo "<div id='notice'>";
+    echo "Recent Notices";
+    echo "</div>";
+    echo "<div id='notices'>";
+    echo "<a id='submit' href='submitnotices.php'>Add Notice</a><br>";
+    echo "<p>";
+    echo "<div class='noticeDates'>";
+    echo "<p>";
+    echo "Posted 24-Mar-15";
+    echo "</p>";
+    echo "</div>";
+    echo "<strong>Volunteer Singers / Musicians<br></strong>";
+    echo "<br>";
+    echo "Our Parish Priest, Fr Mick Peters, is trying to development and foster a community for our 6 PM Vigil Mass at St Josephs on the Strand.";
+    echo "<br>";
+    echo "<a href='notices.php'>Read more...</a>";
+    echo "<br>";
+    echo "</p>";
+    echo "<p>";
+    echo "<div class='noticeDates'>";
+    echo "<p>";
+    echo "Posted 21-March-15";
+    echo "</p>";
+    echo "</div>";
+    echo "<strong>CALL OUT FOR MUSOS</strong><br>";
+    echo "<br>";
+    echo "Calling all Musos, entertainers, performers. We are looking to book performers/musicians/entertainers for a family friendly festival at the       Ingham Tyto Wetlands on the 23rd of May.";
+    echo "<br>";
+    echo "<a href='notices.php'>Read more...</a>";
+    echo "<br>";
+    echo "</p>";
+    echo "<p>";
+    echo "<div class='noticeDates'>";
+    echo "<p>";
+    echo "Posted 17-Mar-15";
+    echo "</p>";
+    echo "</div>";
+    echo "<strong>Chord Organ Rouvas Academy of Singing</strong>";
+    echo "<br>";
+    echo "<br>";
+    echo "I have been in the music industry in Sydney for over 30 years in the capacity of singing teacher, stage performer, singer and musician.";
+    echo "<br>";
+    echo "<a href='notices.php'>Read more...</a>";
+    echo "</p>";
+    echo "</div>";
+?>
