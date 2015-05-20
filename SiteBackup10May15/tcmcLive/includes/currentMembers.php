@@ -12,6 +12,7 @@
     echo "<label class='password' for='password'>Password:</label>";
     echo "<input type='password' name='password' size='19' />";
     echo "<br>";
+    echo "$_SESSION[message]";
     echo "<br>";
     echo "<input type='submit' value='Login'>";
     echo "</form>";

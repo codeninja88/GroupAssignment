@@ -1,14 +1,13 @@
 <?php
 
 session_start();
-require('includes/databaseConnect.php');
-require('includes/functions.php');
+require_once('includes/databaseConnect.php');
+require_once('includes/functions.php');
 
 //This page is to handle any log in/log out post requests.
 //Log in requests will be redirected back to the page they came from
 //  --If the user has logged in from the index - they go back to index etc.
 $sql = "INSERT INTO USER(userEmail, userFName, userLName, userPW) VALUES('someone@somewhere.com', 'Someone', 'Somewhere', 'password')";
-
 
 //LOGOUT
 if(isset($_POST['Logout'])){
@@ -37,8 +36,9 @@ if($_POST['username'] == "" || $_POST['password'] == ""){
                                             "paid"
                                             "casual"
             */
-
+            $email = $row['userEmail'];
             $_SESSION['loginState'] = "Logged in";
+            $_SESSION['userEmail'] = $email;
             $_SESSION['userType'] = $row['userType'];
             $_SESSION['userFName'] = $row['userFName'];
             $_SESSION['userLName'] = $row['userLName'];
