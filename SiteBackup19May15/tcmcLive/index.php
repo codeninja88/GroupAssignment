@@ -1,6 +1,7 @@
 
     <?php
         include "includes/headerALL.php";
+        require "includes/databaseConnect.php";
     ?>
 
 
@@ -11,18 +12,11 @@
         <div class="Content">
             <h2>Home</h2>
             <div style="float: right; width: 500px; border: 1px solid black; padding-bottom: 30px;">
-                <div id="featured">Featured Artist</div>
-                    <br>
-                    <div style="padding-left: 30px; padding-right: 30px;">
-                        <img src="images/Aquapella01.jpg" alt="Aquapello" style="width: 70%; height: auto;">
-                        <br>
-                        <br>
-                        <strong>Aquapello</strong>
-                        <br>
-                        <br>
-                        Aquapella are 50 singers from the Townsville area bringing you a cappella world music at its very best: inspiring and uplifting harmonies from around the globe.
-                    </div>
-                </div>
+
+                <?php
+                    include "includes/featuredArtist.php";
+                ?>
+
                 <p>
                 With the support of the Townsville City Council, we work from an office in the Civic Theatre building.
                 <br>
