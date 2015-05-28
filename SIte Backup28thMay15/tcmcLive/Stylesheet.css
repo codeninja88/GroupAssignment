@@ -1,0 +1,414 @@
+body {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1140px;
+	background: #4B4B4B
+}
+#navbar ul {
+	margin-top: -10px;
+	float: left;
+	font-family: Arial;
+	font-weight: normal;
+	margin-left: -45px;
+}
+#navbar li {
+	list-style: none;
+	display: inline;
+}
+#navbar ul li a {
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	width: 140px;
+	text-decoration: none;
+	font-size: 20px;
+	float: left;
+	margin-left: 5px;
+	color: #FFF;
+	background-color: #008CE6;
+}
+#navbar li a:hover {
+    	background-color: #33A3EB;
+    	color: #FFF;
+}
+#navbar ul li a:active {
+	color: #000000;
+	background-color: #FFF;
+}
+.Content {
+    width: 760px;
+	background-color: #FFF;
+	font-family: Arial;
+	text-align: left;
+	font-style: normal;
+	margin-right: 320px;
+	padding-top: 40px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 40px;
+}
+pre {
+    font-family: Arial;
+	text-align: left;
+	font-style: normal;
+}
+.head {
+	background-color: #ACACAC;
+	font-family: Arial;
+	text-align: left;
+	padding: 20px 0px 0px 10px;
+    height: 110px;
+    background-image: url(images/MusicNotes.png);
+}
+h2 {
+	text-align: center;
+	font-weight: lighter;
+}
+#featured {
+    font-family: Arial;
+    text-align: center;
+    background-color: #008CE6;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 17px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#notices {
+	background-color: #FFF;
+	font-family: Arial;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+#loginform {
+    background-color: #FFF;
+	margin-top: 0px;
+	font-size: small;
+	text-align: right;
+	color: black;
+	font-family: Arial;
+    padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+label {
+    padding-right: 5px;
+}
+
+#signUp a {
+    text-decoration: none;
+    padding-top: 10px;
+	padding-bottom: 10px;
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    font-weight: Bold;
+    border-radius: 20px;
+    background-color: #FF5050;
+    color: #FFF;
+    width: 295px;
+    float: right;
+    font-family: Arial;
+    height: 20px
+}
+#signUp a:hover {
+    background-color: #FF7373;
+}
+#signUp a:active {
+    background-color: #FFF;
+    color: #000000;
+}
+.rightColumn {
+    width: 295px;
+    float: right;
+}
+#currentMembers {
+    margin-top: 65px;
+    font-family: Arial;
+    text-align: center;
+    background-color: #008CE6;
+    color: #FFF;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#notice {
+    margin-top: 25px;
+    font-family: Arial;
+    text-align: center;
+    background-color: #008CE6;
+    color: #FFF;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.belowHeader {
+    margin-top: 30px;
+}
+#submit {
+    text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+    padding-right: 10px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #FFF;
+    background-color: cadetblue;
+    border-radius: 4px
+}
+.noticeDates {
+    font-size: 14px;
+    color: #666666;
+    text-align: right;
+}
+.imgBorder {
+    border-style: ridge;
+    border-color: #008CE6;
+    border-width: thick;
+    border-top-width: thick
+}
+#sponsor {
+    width: 200px;
+    position: inherit;
+    margin-left: 260px;
+}
+#sponsor1 {
+    margin-left: 320px;
+}
+
+h1 {
+    margin-left: 140px;
+    margin-top: -45px;
+    font-weight: lighter;
+    font-size: 40px;
+}
+#Logo {
+    margin-left: 15px;
+}
+
+#homeLink {
+    text-decoration: none;
+    color: #FFF;
+}
+#artistListTable {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signupTable{
+    text-align: right;
+}
+
+#signupTable input {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 3px;
+}
+
+.errorText {
+	color: red;
+
+}
+.noticeLink{
+    text-align: center;
+}
+#noticeInfoDate{
+    text-align: right;
+    color: #ACACAC;
+}
+#artistListTable{
+   text-align: center;
+}
+
+.eventImage {
+    text-align: center;
+
+}
+
+.eventImage > img {
+    border: solid;
+    border-radius: 20px;
+}
+
+.eventInfoDiv {
+
+}
+
+.editEventTitle {
+    min-width: 60%;
+    text-align: center;
+}
+
+#artistInfoMiddleLeft {
+    float:left;
+    width:50%;
+}
+
+#artistInfoTable {
+    padding:10px;
+    border:solid 1px;
+}
+
+#requiredFieldsSpan{
+    color: red;
+    font-style: italic;
+    font-size: 10px;
+}
+
+.eventInputTextArea {
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 194px;
+    height: 125px;
+
+}
+
+.eventInputField {
+    width: 180px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.leftMyAccountDiv {
+    text-align: right;
+    float: left;
+    margin-right: 10px;
+    margin-left: 20px;
+    line-height: 200%;
+}
+
+.rightMyAccountDiv {
+    line-height: 200%;
+}
+
+.Sax{
+    margin-left: 250px;
+ border-style: ridge;
+    border-color: #008CE6;
+    border-width: thick;
+    border-top-width: thick
+
+}
+
+.rightSignUpColumn {
+    text-align: left;
+    transition: background-color 0.5s ease;
+}
+
+#passwordErrorSpan{
+    font-size: 10px;
+}
+
+#accountBoxLogoutButton{
+    padding: 6px;
+    background-color: #008CE6;
+    color: white;
+    border: none;
+}
+
+#loggedInBox {
+    background-color: #FFF;
+    margin-top: 0px;
+    color: black;
+    font-family: Arial;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.loggedInBoxText {
+    font-size: 20px;
+}
+
+#editMyAccountButton{
+    border: none;
+    padding:10px;
+    background-color: rgba(0, 252, 0, 0.43);
+    border-radius: 5px;
+}
+
+#deleteMyAccountButton{
+    border: none;
+    padding:10px;
+    background-color: red;
+    border-radius: 5px;
+}
+
+#becomeAPaidMemberButton {
+    border: none;
+    padding:10px;
+    background-color: rgba(0, 252, 0, 0.43);
+    border-radius: 5px;
+}
+#book {
+    font-stye: italic;
+}
+
+#featured2{
+    float: right;
+    width: 500px;
+    border: 1px solid black;
+    padding-bottom: 30px;
+
+}
+#contact{
+    padding-right: 100px;
+    margin-bottom: 0px;
+}
+#italic{
+    font-style: italic;
+}
+#bigger{
+    font-size: 19px
+}
+
+#generalInfo{
+    font-size: 17px
+}
+
+.turnOffResizing{
+    resize: none;
+}
+
+.contactAddresses {
+    padding-left: 10px;
+    font-style: italic;
+}
+
+.editingDiv {
+    background-color: #008CE6;
+    min-height: 20px;
+}
+
+.eventEditingTextArea {
+    width: 100%;
+    border-radius: 5px;
+    resize: none;
+    height: 125px;
+}
+
+.eventsPagePaddingDiv {
+    height: 88px;
+}
+
+.signUpSubmitButton{
+    background-color: #008CE6;
+    padding: 6px;
+    color: white;
+    border: none;
+
+}
+
+#eventMessage {
+    color: #008CE6;
+}
